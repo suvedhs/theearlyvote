@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "firebase": "^9.12.1",
     "gray-matter": "^4.0.3",
     "next": "latest",

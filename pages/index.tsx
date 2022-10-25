@@ -26,7 +26,11 @@ export default function Home({
         <p>Live in Texas? Enter your address and find your nearest polling locations.</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <form action="/api/form" method="post">
+          <label htmlFor="address">Polling Place Search</label><br/>
+          <input type="text" id="address" name="address" /><br/>
+          <button type="submit">Submit</button>
+        </form>
       </section>
     </Layout>
   )

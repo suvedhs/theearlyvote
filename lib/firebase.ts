@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { initializeApp } from "firebase/app";
+import {getFirestore} from 'firebase/firestore';
 import { getAnalytics } from "firebase/analytics";
 
 // Import the functions you need from the SDKs you need
@@ -10,19 +11,23 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCE4rlIz24mYuzMjvC0EJGtSo9PrZbBMTw",
-  authDomain: "theearlyvote-9cd50.firebaseapp.com",
-  projectId: "theearlyvote-9cd50",
-  storageBucket: "theearlyvote-9cd50.appspot.com",
-  messagingSenderId: "283709702046",
-  appId: "1:283709702046:web:1135475765a756bfe6e08f",
-  measurementId: "G-SEPCBS60M5"
-};
+let firebaseConfig = process?.env?.FIREBASE_CONFIG ?? '{}';
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+let app, analytics, firestore
+if (firebaseConfig?.projectId) {
+  // Initialize Firebase
+  app = initializeApp(firebaseConfig);
+
+  if (app.name && typeof window !== 'undefined') {
+    analytics = getAnalytics(app);
+  }
+
+  // Access Firebase services using shorthand notation
+  firestore = getFirestore();
+}
+
+export {analytics, firestore};
 
 export async function getElectionData() {
   const res = await fetch('https://api.publicapis.org/entries');
