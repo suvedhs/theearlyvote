@@ -25,3 +25,14 @@ img {
   max-width: 100%;
   display: block;
 }
+
+.hidden {
+  display: none;
+  visibility: none;
+}
+
+#mapId {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}

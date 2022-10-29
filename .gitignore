@@ -45,5 +45,6 @@ package-lock.json
 */package-lock.json
 */*/package-lock.json
 
-# Key
-utils
+# Keys
+.env.local
+secrets.json
