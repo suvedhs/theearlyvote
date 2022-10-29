@@ -200,7 +200,6 @@ export default function Home() {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
-        <script src={mapsScriptSrc}></script>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>Live in Texas? Enter your address or zip code and find your nearest polling locations for early voting.</p>
