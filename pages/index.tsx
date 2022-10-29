@@ -4,7 +4,6 @@ import utilStyles from '../styles/utils.module.css'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { useState, useEffect, useRef } from 'react';
 import countyPollingLocations from '../public/locations.json'
-import secrets from '../secrets.json'
 
 var axios = require('axios');
 
