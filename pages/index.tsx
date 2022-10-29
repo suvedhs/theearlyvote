@@ -19,6 +19,7 @@ export default function Home() {
   let searchRef = useRef<HTMLAnchorElement>(null)
   // let countySiteRef = useRef<HTMLAnchorElement>(null)
   // let pdfRef = useRef<HTMLAnchorElement>(null)
+  let mapsScriptSrc = 'https://maps.googleapis.com/maps/api/js?key=' + process.env.maps + '&libraries=places'
   
   let placeid
   let mapsUrl
@@ -199,7 +200,7 @@ export default function Home() {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
-        <script src="https://maps.googleapis.com/maps/api/js?key=--GOOGLE-MAPS-KEY--&libraries=places"></script>
+        <script src={mapsScriptSrc}></script>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>Live in Texas? Enter your address or zip code and find your nearest polling locations for early voting.</p>
