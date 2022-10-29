@@ -19,7 +19,7 @@ export default function Home() {
   let searchRef = useRef<HTMLAnchorElement>(null)
   // let countySiteRef = useRef<HTMLAnchorElement>(null)
   // let pdfRef = useRef<HTMLAnchorElement>(null)
-  let mapsScriptSrc = 'https://maps.googleapis.com/maps/api/js?key=' + process.env.maps + '&libraries=places'
+  let mapsScriptSrc = 'https://maps.googleapis.com/maps/api/js?key=' + process.env.NEXT_PUBLIC_MAPS + '&libraries=places'
   
   let placeid
   let mapsUrl
@@ -72,7 +72,7 @@ export default function Home() {
   const getAddressInfo = () => {
     var config = {
       method: 'get',
-      url: 'https://maps.googleapis.com/maps/api/place/details/json?place_id=' + placeid +'&fields=address_component&key=' + process.env.maps,
+      url: 'https://maps.googleapis.com/maps/api/place/details/json?place_id=' + placeid +'&fields=address_component&key=' + process.env.NEXT_PUBLIC_MAPS,
     };
     return axios(config)
     .then(function (response) {
@@ -97,7 +97,7 @@ export default function Home() {
     addresses.slice(0,-1)
     addresses = addresses.replaceAll('#', '')
     
-    let g20url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:' + placeid + '&destinations=' + addresses + '&key=' + process.env.maps
+    let g20url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:' + placeid + '&destinations=' + addresses + '&key=' + process.env.NEXT_PUBLIC_MAPS
     console.log(g20url)
 
     var config = {
@@ -145,7 +145,7 @@ export default function Home() {
     }
     closest = await getBestof20(locList)
     
-    mapsUrl = "https://www.google.com/maps/embed/v1/place?key=" + process.env.maps + "&q=" + encodeURI(closest)
+    mapsUrl = "https://www.google.com/maps/embed/v1/place?key=" + process.env.NEXT_PUBLIC_MAPS + "&q=" + encodeURI(closest)
     if(mapRef.current) {
       mapRef.current.src = mapsUrl
     }
@@ -207,7 +207,7 @@ export default function Home() {
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
       <GooglePlacesAutocomplete
-        apiKey= {process.env.maps}
+        apiKey= {process.env.NEXT_PUBLIC_MAPS}
         ref={autocompleteRef}
         autocompletionRequest={{
             bounds: [
