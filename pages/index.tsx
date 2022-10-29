@@ -72,7 +72,7 @@ export default function Home() {
   const getAddressInfo = () => {
     var config = {
       method: 'get',
-      url: 'https://maps.googleapis.com/maps/api/place/details/json?place_id=' + placeid +'&fields=address_component&key=' + secrets.maps,
+      url: 'https://maps.googleapis.com/maps/api/place/details/json?place_id=' + placeid +'&fields=address_component&key=' + process.env.maps,
     };
     return axios(config)
     .then(function (response) {
@@ -97,7 +97,7 @@ export default function Home() {
     addresses.slice(0,-1)
     addresses = addresses.replaceAll('#', '')
     
-    let g20url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:' + placeid + '&destinations=' + addresses + '&key=' + secrets.maps
+    let g20url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:' + placeid + '&destinations=' + addresses + '&key=' + process.env.maps
     console.log(g20url)
 
     var config = {
@@ -145,7 +145,7 @@ export default function Home() {
     }
     closest = await getBestof20(locList)
     
-    mapsUrl = "https://www.google.com/maps/embed/v1/place?key=" + secrets.maps + "&q=" + encodeURI(closest)
+    mapsUrl = "https://www.google.com/maps/embed/v1/place?key=" + process.env.maps + "&q=" + encodeURI(closest)
     if(mapRef.current) {
       mapRef.current.src = mapsUrl
     }
@@ -206,7 +206,7 @@ export default function Home() {
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
       <GooglePlacesAutocomplete
-        apiKey= {secrets.maps}
+        apiKey= {process.env.maps}
         ref={autocompleteRef}
         autocompletionRequest={{
             bounds: [
