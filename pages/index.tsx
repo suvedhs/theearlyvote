@@ -19,7 +19,6 @@ export default function Home() {
   let searchRef = useRef<HTMLAnchorElement>(null)
   // let countySiteRef = useRef<HTMLAnchorElement>(null)
   // let pdfRef = useRef<HTMLAnchorElement>(null)
-  let mapsScriptSrc = 'https://maps.googleapis.com/maps/api/js?key=' + process.env.NEXT_PUBLIC_MAPS + '&libraries=places'
   
   let placeid
   let mapsUrl
@@ -72,7 +71,7 @@ export default function Home() {
   const getAddressInfo = () => {
     var config = {
       method: 'get',
-      url: 'https://maps.googleapis.com/maps/api/place/details/json?place_id=' + placeid +'&fields=address_component&key=' + process.env.NEXT_PUBLIC_MAPS,
+      url: 'https://theearlyvote-sc6o.vercel.app/https://maps.googleapis.com/maps/api/place/details/json?place_id=' + placeid +'&fields=address_component&key=' + process.env.NEXT_PUBLIC_MAPS,
     };
     return axios(config)
     .then(function (response) {
@@ -97,7 +96,7 @@ export default function Home() {
     addresses.slice(0,-1)
     addresses = addresses.replaceAll('#', '')
     
-    let g20url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:' + placeid + '&destinations=' + addresses + '&key=' + process.env.NEXT_PUBLIC_MAPS
+    let g20url = 'https://theearlyvote-sc6o.vercel.app/https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:' + placeid + '&destinations=' + addresses + '&key=' + process.env.NEXT_PUBLIC_MAPS
     console.log(g20url)
 
     var config = {
@@ -145,7 +144,7 @@ export default function Home() {
     }
     closest = await getBestof20(locList)
     
-    mapsUrl = "https://www.google.com/maps/embed/v1/place?key=" + process.env.NEXT_PUBLIC_MAPS + "&q=" + encodeURI(closest)
+    mapsUrl = "https://theearlyvote-sc6o.vercel.app/https://www.google.com/maps/embed/v1/place?key=" + process.env.NEXT_PUBLIC_MAPS + "&q=" + encodeURI(closest)
     if(mapRef.current) {
       mapRef.current.src = mapsUrl
     }
