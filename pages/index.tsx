@@ -199,6 +199,7 @@ export default function Home() {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
+        <script src="https://maps.googleapis.com/maps/api/js?key=--GOOGLE-MAPS-KEY--&libraries=places"></script>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>Live in Texas? Enter your address or zip code and find your nearest polling locations for early voting.</p>
